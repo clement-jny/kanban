@@ -1,0 +1,17 @@
+# services:
+#   kanban_app_dev:
+#     container_name: kanban_app_dev
+#     build:
+#       context: .
+#       target: dev
+#     ports:
+#       - 5173:5173
+#     volumes:
+#       - .:/app
+#     # env_file:
+#     #   - .env
+#     environment:
+#       NODE_ENV: development
+#     restart: unless-stopped
+#     stdin_open: true
+#     tty: true

@@ -1,0 +1,28 @@
+services:
+  kanban_app_prod:
+    container_name: kanban_app_prod
+    build:
+      context: .
+      target: prod
+    # ports:
+    #   - 80:80
+    # volumes:
+    #   - .:/app
+    # env_file:
+    #   - .env.prod
+    environment:
+      NODE_ENV: production
+    restart: always
+    networks:
+      - traefik_default
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.kanban_app_prod.entrypoints=websecure
+      - traefik.http.routers.kanban_app_prod.tls=true
+      - traefik.http.routers.kanban_app_prod.tls.certresolver=production
+      - traefik.http.routers.kanban_app_prod.rule=Host(`kanban.clement-jny.fr`)
+      - traefik.http.services.kanban_app_prod.loadbalancer.server.port=80
+
+networks:
+  traefik_default:
+    external: true
