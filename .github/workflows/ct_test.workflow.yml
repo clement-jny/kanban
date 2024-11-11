@@ -22,4 +22,4 @@ jobs:
         run: bun install
 
       - name: Run ct tests
-        run: bun test:unit
+        run: bun run test:unit

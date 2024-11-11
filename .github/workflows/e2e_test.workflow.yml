@@ -28,8 +28,8 @@ jobs:
       - name: Run e2e tests
         run: |
           if [ "${{ inputs.test_mode }}" == "dev"]; then
-            bun test:e2e:dev
+            bun run test:e2e:dev
           else
-            bun build
-            bun test:e2e
+            bun run build
+            bun run test:e2e
           fi
