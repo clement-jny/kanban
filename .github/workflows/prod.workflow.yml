@@ -36,7 +36,7 @@ jobs:
       # Transfer the code to the VPS via SCP (Secure Copy)
       - name: Transfer code to VPS
         run: |
-        ls
+          ls
 
       # - name: Deploy to Production Server
       #   run: |
