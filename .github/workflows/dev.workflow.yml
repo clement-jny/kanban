@@ -1,0 +1,22 @@
+name: Dev branch workflow - Test and check thing
+
+on:
+  # Runs on opened/updated pull request targeting the dev branch
+  # When I want to merge feature branch into dev branch
+  pull_request:
+    types:
+      - opened
+      - synchronize
+    branches:
+      - dev
+
+  # Allows to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  # Testing jobs in dev branch
+  e2e_test_job:
+    uses: ./.github/workflows/e2e_test.workflow.yml
+
+  ct_test_job:
+    uses: ./.github/workflows/ct_test.workflow.yml
