@@ -36,12 +36,10 @@ jobs:
       # Transfer the code to the VPS via SCP (Secure Copy)
       - name: Transfer code to VPS
         run: |
-          # Use SCP to copy the code to your VPS
           scp -o StrictHostKeyChecking=no -r ./ ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }}:kanban
 
       - name: Deploy to Production Server
         run: |
-          # SSH connection to your VPS and deploy the latest changes
           ssh -o StrictHostKeyChecking=no -T ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} << 'EOF'
             cd kanban
             docker compose -f compose.prod.yml up --build -d
