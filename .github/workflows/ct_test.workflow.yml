@@ -1,0 +1,25 @@
+name: Component testing reusable workflow
+
+on:
+  # Allows this workflow to be called from another one
+  workflow_call:
+
+jobs:
+  # Testing jobs
+  ct_test_job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Setup Bun 
+        uses: oven-sh/setup-bun@v2.0.1
+        with:
+          bun-version: 1.1.30
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Run ct tests
+        run: bun test:unit
