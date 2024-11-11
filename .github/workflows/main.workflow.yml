@@ -1,0 +1,24 @@
+name: Main branch workflow - Test and check thing
+
+on:
+  # Runs on opened pull request targeting the main branch
+  # When I want to merge dev branch into main branch
+  pull_request:
+    types:
+      - opened
+      - synchronize
+    branches:
+      - main
+
+  # Allows to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  # Testing jobs in main branch
+  e2e_test_job:
+    uses: ./.github/workflows/e2e_test.workflow.yml
+    with:
+      test_mode: build # Pass a parameter to specify build mode
+
+  ct_test_job:
+    uses: ./.github/workflows/ct_test.workflow.yml
