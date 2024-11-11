@@ -17,8 +17,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4.2.2
+      # - name: Checkout code
+      #   uses: actions/checkout@v4.2.2
 
       - name: multiple command
       uses: appleboy/ssh-action@v1.1.0
