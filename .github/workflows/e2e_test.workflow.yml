@@ -1,0 +1,35 @@
+name: End 2 end testing reusable workflow
+
+on:
+  # Allows this workflow to be called from another one
+  workflow_call:
+    inputs:
+      test_mode:
+        required: true
+        type: string
+
+jobs:
+  # Testing jobs
+  e2e_test_job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Setup Bun 
+        uses: oven-sh/setup-bun@v2.0.1
+        with:
+          bun-version: 1.1.30
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Run e2e tests
+        run: |
+          if [ "${{ inputs.test_mode }}" == "dev"]; then
+            bun test:e2e:dev
+          else
+            bun build
+            bun test:e2e
+          fi

@@ -17,6 +17,8 @@ jobs:
   # Testing jobs in main branch
   e2e_test_job:
     uses: ./.github/workflows/e2e_test.workflow.yml
+    with:
+      test_mode: build # Pass a parameter to specify build mode
 
   ct_test_job:
     uses: ./.github/workflows/ct_test.workflow.yml
